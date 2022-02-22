@@ -17,5 +17,5 @@ Microservicio de información del cliente
    - npm install
    - npm run start: dev
 4. en un explorador de internet acceder a la siguiente URL
-   - 
+   - http://127.0.0.1:3000/ping-mscliente
 
