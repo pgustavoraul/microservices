@@ -13,6 +13,9 @@ async function bootstrap() {
       port: 8888,
     },
   });
-  app.listen(() => logger.log('Microservice A is listening'));
+  //app.listen(() => logger.log('Microservice A is listening'));
+  await app.listen().then(() => {
+    Logger.log('Microservice A is listening');
+  });
 }
 bootstrap();

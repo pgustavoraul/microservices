@@ -7,19 +7,11 @@ import { AppService } from './app.service';
   imports: [
     ClientsModule.register([
       {
-        name: 'SERVICE_A',
+        name: 'MS_CLIENTE',
         transport: Transport.TCP,
         options: {
           host: '127.0.0.1',
           port: 8888,
-        },
-      },
-      {
-        name: 'SERVICE_B',
-        transport: Transport.TCP,
-        options: {
-          host: '127.0.0.1',
-          port: 8889,
         },
       },
     ]),
