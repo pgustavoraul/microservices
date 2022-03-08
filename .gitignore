@@ -1,6 +1,7 @@
 .lh/
 .lhignore
 .vscode
+/.vscode
 # Compiled output
 /dist
 /tmp
@@ -8,6 +9,6 @@
 /bazel-out
 
 # Node
-node_modules
+/node_modules
 npm-debug.log
 yarn-error.log
