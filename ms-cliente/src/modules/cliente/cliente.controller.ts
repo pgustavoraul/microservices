@@ -15,7 +15,9 @@ export class ClienteController {
 
   @MessagePattern('findAllCliente')
   findAll() {
-    return this.clienteService.findAll();
+    const data = this.clienteService.findAll();
+    console.log(data);
+    return data;
   }
 
   @MessagePattern('findOneCliente')
