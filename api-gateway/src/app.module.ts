@@ -1,22 +1,23 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { ClienteController } from './modules/cliente/cliente.controller';
-import { ClienteService } from './modules/cliente/services/cliente.service';
+import Joi = require('joi');
+import { ClienteModule } from './modules/cliente/cliente.module';
 
 @Module({
   imports: [
-    ClientsModule.register([
-      {
-        name: 'MS_CLIENTE',
-        transport: Transport.TCP,
-        options: {
-          host: '127.0.0.1',
-          port: 8888,
-        },
-      },
-    ]),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: `.env.${process.env.NODE_ENV || 'local'}`,
+      validationSchema: Joi.object({
+        NODE_ENV: Joi.string()
+          .valid('development', 'production', 'test', 'local')
+          .default('local'),
+      }),
+    }),
+    ClienteModule,
   ],
-  controllers: [ClienteController],
-  providers: [ClienteService],
+  controllers: [],
+  providers: [],
 })
-export class AppModule {}
+export class AppModule { }

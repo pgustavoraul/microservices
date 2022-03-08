@@ -10,6 +10,6 @@ export class AppController {
   }
   @MessagePattern({ cmd: 'clientes-list' })
   getClientes(_: any) {
-    return of('Lista clientes');
+    return of('Lista clientes desde el microservicio');
   }
 }
