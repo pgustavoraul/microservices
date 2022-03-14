@@ -3,7 +3,7 @@ import { MessagePattern, Payload } from '@nestjs/microservices';
 import { ClienteService } from './cliente.service';
 import { CreateClienteDto } from './dto/create-cliente.dto';
 import { UpdateClienteDto } from './dto/update-cliente.dto';
-
+import { of } from 'rxjs';
 @Controller()
 export class ClienteController {
   constructor(private readonly clienteService: ClienteService) {}
@@ -14,9 +14,8 @@ export class ClienteController {
   }
 
   @MessagePattern('findAllCliente')
-  findAll() {
-    const data = this.clienteService.findAll();
-    console.log(data);
+  async findAll() {
+    const data = await this.clienteService.findAll();
     return data;
   }
 
@@ -33,5 +32,13 @@ export class ClienteController {
   @MessagePattern('removeCliente')
   remove(@Payload() id: number) {
     return this.clienteService.remove(id);
+  }
+
+  @MessagePattern({ cmd: 'clientes-list' })
+  async getClientes() {
+
+    // return of('Lista clientes desde el microservicio');
+    const data = await this.clienteService.findAll();
+    return of(data);
   }
 }

@@ -8,8 +8,5 @@ export class AppController {
   ping(_: any) {
     return of('pong ms-cliente');
   }
-  @MessagePattern({ cmd: 'clientes-list' })
-  getClientes(_: any) {
-    return of('Lista clientes desde el microservicio');
-  }
+
 }
