@@ -1,17 +1,15 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Version } from '@nestjs/common';
+import { plainToClass } from 'class-transformer';
 import { ClienteService } from './services/cliente.service';
 
 @Controller()
 export class ClienteController {
-    constructor(private readonly appService: ClienteService) { }
+    constructor(private readonly clienteService: ClienteService) { }
 
-    @Get('/ping-mscliente')
-    pingServiceA() {
-        return this.appService.pingMsCliente();
-    }
-
+    @Version('1')
     @Get('/clientes/list')
-    getClientes() {
-        return this.appService.getClientes();
+    async getClientes() {
+        const data = await this.clienteService.getClientes();
+        return data;
     }
 }

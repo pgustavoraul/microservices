@@ -36,8 +36,6 @@ export class ClienteController {
 
   @MessagePattern({ cmd: 'clientes-list' })
   async getClientes() {
-
-    // return of('Lista clientes desde el microservicio');
     const data = await this.clienteService.findAll();
     return of(data);
   }

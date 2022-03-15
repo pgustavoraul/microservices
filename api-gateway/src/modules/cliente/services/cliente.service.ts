@@ -1,32 +1,31 @@
+import { map } from 'rxjs/operators';
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { map } from 'rxjs/operators';
+import { ConstantesConfig } from 'src/config/constantes.config';
+import { firstValueFrom } from 'rxjs';
+import { manageErrors } from 'src/helper/manageErrors';
 
 @Injectable()
 export class ClienteService {
+    private readonly msCliente: string;
     constructor(
-        @Inject('MS_CLIENTE') private readonly msCliente: ClientProxy,
-    ) { }
-
-    pingMsCliente() {
-        const startTs = Date.now();
-        const pattern = { cmd: 'ping' };
-        const payload = {};
-        return this.msCliente
-            .send<string>(pattern, payload)
-            .pipe(
-                map((message: string) => ({ message, duration: Date.now() - startTs })),
-            );
+        @Inject(ConstantesConfig.MS_CIENTE)
+        private readonly clienteMSCliente: ClientProxy,
+    ) {
+        this.msCliente = ConstantesConfig.MS_CIENTE;
     }
 
-    getClientes() {
-        const startTs = Date.now();
-        const pattern = { cmd: 'clientes-list' };
+    // constructor(
+    //     @Inject('MS_CLIENTE') private readonly msCliente: ClientProxy,
+    // ) { }
+
+    
+    async getClientes(){
+        const pattern = { role: this.msCliente, cmd: this.getClientes.name };
         const payload = {};
-        return this.msCliente
-            .send<string>(pattern, payload)
-            .pipe(
-                map((message: string) => ({ message, duration: Date.now() - startTs })),
-            );
+        const data = await firstValueFrom(
+          this.clienteMSCliente.send(pattern, payload),
+        ).catch((err) => manageErrors(this.msCliente, err.error));
+        return data;
     }
 }
