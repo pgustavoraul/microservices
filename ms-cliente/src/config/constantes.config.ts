@@ -7,5 +7,5 @@
  */
 export class ConstantesConfig {
   public static readonly TYPEORM_CONFIG = 'database.config';
-  public static readonly MS_PACIENTE = 'ms-cliente';
+  public static readonly MS_CLIENTE = 'ms-cliente';
 }

@@ -4,6 +4,7 @@ import { ClienteService } from './cliente.service';
 import { CreateClienteDto } from './dto/create-cliente.dto';
 import { UpdateClienteDto } from './dto/update-cliente.dto';
 import { of } from 'rxjs';
+import { ConstantesConfig } from 'src/config/constantes.config';
 @Controller()
 export class ClienteController {
   constructor(private readonly clienteService: ClienteService) {}
@@ -34,7 +35,7 @@ export class ClienteController {
     return this.clienteService.remove(id);
   }
 
-  @MessagePattern({ cmd: 'clientes-list' })
+  @MessagePattern({ role: ConstantesConfig.MS_CLIENTE, cmd: 'getClientes' })
   async getClientes() {
     const data = await this.clienteService.findAll();
     return of(data);

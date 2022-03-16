@@ -16,7 +16,7 @@ import { ConstantesConfig } from 'src/config/constantes.config';
               transport: Transport.TCP,
               options: {
                 host: config.get<string>('MS_CLIENTE_HOST') || 'localhost',
-                        port: config.get<number>('MS_CLIENTE_PORT') || 8888,
+                port: config.get<number>('MS_CLIENTE_PORT') || 8888,
               },
             });
           },

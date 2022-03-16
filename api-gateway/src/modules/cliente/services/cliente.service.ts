@@ -19,12 +19,12 @@ export class ClienteService {
     //     @Inject('MS_CLIENTE') private readonly msCliente: ClientProxy,
     // ) { }
 
-    
-    async getClientes(){
+
+    async getClientes() {
         const pattern = { role: this.msCliente, cmd: this.getClientes.name };
         const payload = {};
         const data = await firstValueFrom(
-          this.clienteMSCliente.send(pattern, payload),
+            this.clienteMSCliente.send(pattern, payload),
         ).catch((err) => manageErrors(this.msCliente, err.error));
         return data;
     }
