@@ -35,7 +35,7 @@ export class ClienteController {
     return this.clienteService.remove(id);
   }
 
-  @MessagePattern({ role: ConstantesConfig.MS_CLIENTE, cmd: 'getClientes' })
+  @MessagePattern({ cmd: 'getClientes' })
   async getClientes() {
     const data = await this.clienteService.findAll();
     return of(data);

@@ -21,7 +21,7 @@ export class ClienteService {
 
 
     async getClientes() {
-        const pattern = { role: this.msCliente, cmd: this.getClientes.name };
+        const pattern = { cmd: this.getClientes.name };
         const payload = {};
         const data = await firstValueFrom(
             this.clienteMSCliente.send(pattern, payload),

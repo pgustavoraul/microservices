@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as compression from 'compression';
+import { initSwagger } from './app.swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -26,7 +27,7 @@ async function bootstrap() {
     type: VersioningType.URI,
   });
 
-  // initSwagger(app);
+  initSwagger(app);
 
   const config = app.get(ConfigService);
   const PORT = parseInt(config.get<string>('PORT'), 10);
