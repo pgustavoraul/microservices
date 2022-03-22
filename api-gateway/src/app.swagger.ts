@@ -3,7 +3,7 @@ import { INestApplication } from '@nestjs/common';
 
 export const initSwagger = (app: INestApplication) => {
   const swaggerConfig = new DocumentBuilder()
-    .setTitle('Receta')
+    .setTitle('Sistema')
     .addBearerAuth()
     .setDescription(
       'Esta es una API Gateway creada con NestJS',
