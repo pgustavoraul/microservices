@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 import Joi = require('joi');
 import { ClienteModule } from './modules/cliente/cliente.module';
 
