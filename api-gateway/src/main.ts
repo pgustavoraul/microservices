@@ -2,7 +2,7 @@ import { ValidationPipe, VersioningType } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import * as compression from 'compression';
+import compression from 'compression';
 import { initSwagger } from './app.swagger';
 
 async function bootstrap() {
