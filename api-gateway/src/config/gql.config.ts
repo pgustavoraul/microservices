@@ -6,22 +6,22 @@
  * @ Description:
  */
 
-import { ApolloDriver } from '@nestjs/apollo';
-import { registerAs } from '@nestjs/config';
-import { GqlModuleOptions } from '@nestjs/graphql';
+// import { ApolloDriver } from '@nestjs/apollo';
+// import { registerAs } from '@nestjs/config';
+// import { GqlModuleOptions } from '@nestjs/graphql';
 
-function gqlModuleOptions(): GqlModuleOptions {
-  return {
-    driver: ApolloDriver,
-    autoSchemaFile: 'src/graphql/schema.gql',
-    sortSchema: true,
-    //playground: true,
-    buildSchemaOptions: {
-      dateScalarMode: 'isoDate',
-    },
-  };
-}
+// function gqlModuleOptions(): GqlModuleOptions {
+//   return {
+//     driver: ApolloDriver,
+//     autoSchemaFile: 'src/graphql/schema.gql',
+//     sortSchema: true,
+//     // playground: true,
+//     buildSchemaOptions: {
+//       dateScalarMode: 'isoDate',
+//     },
+//   };
+// }
 
-export default registerAs('gql', () => ({
-  config: gqlModuleOptions(),
-}));
+// export default registerAs('gql', () => ({
+//   config: gqlModuleOptions(),
+// }));

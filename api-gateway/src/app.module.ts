@@ -1,22 +1,28 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { GraphQLModule } from '@nestjs/graphql';
+import { GqlModuleAsyncOptions, GqlModuleOptions, GraphQLModule } from '@nestjs/graphql';
 import Joi = require('joi');
 import { ClienteModule } from './modules/cliente/cliente.module';
-import { ConstantesConfig } from './config/constantes.config';
-import graphqlConfig from './config/gql.config';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 
 @Module({
   imports: [
-    GraphQLModule.forRoot<ApolloDriverConfig>({
+    GraphQLModule.forRootAsync<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: 'src/graphql/schema.gql',
-      sortSchema: true,
-      playground: true,
-      buildSchemaOptions: {
-        dateScalarMode: 'isoDate',
+      imports: [ConfigModule],
+      useFactory: async (config: ConfigService) => {
+        return {
+          autoSchemaFile: 'src/graphql/schema.gql',
+          sortSchema: true,
+          playground: false,
+          plugins: [ApolloServerPluginLandingPageLocalDefault()],
+          buildSchemaOptions: {
+            dateScalarMode: 'isoDate',
+          },
+        } as GqlModuleOptions;
       },
+      inject: [ConfigService],
     }),
     ConfigModule.forRoot({
       isGlobal: true,
