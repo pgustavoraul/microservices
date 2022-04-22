@@ -2,6 +2,119 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreatePermissionInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreatePersonInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreateRoleInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreateUserInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  createPermission(createPermissionInput: CreatePermissionInput!): Permission!
+  createPerson(createPersonInput: CreatePersonInput!): Person!
+  createRole(createRoleInput: CreateRoleInput!): Role!
+  createUser(createUserInput: CreateUserInput!): User!
+  removePermission(id: Int!): Permission!
+  removePerson(id: Int!): Person!
+  removeRole(id: Int!): Role!
+  removeUser(id: Int!): User!
+  updatePermission(updatePermissionInput: UpdatePermissionInput!): Permission!
+  updatePerson(updatePersonInput: UpdatePersonInput!): Person!
+  updateRole(updateRoleInput: UpdateRoleInput!): Role!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+}
+
+type Permission {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Person {
+  """Fecha de Nacimiento"""
+  datebird: DateTime!
+
+  """Example field (placeholder)"""
+  exampleField: Int!
+
+  """Nombres"""
+  firstname: String!
+
+  """Apellidos"""
+  lastname: String!
+
+  """Teléfono 1"""
+  phone1: Int!
+
+  """Teléfono 2"""
+  phone2: Int!
+}
+
 type Query {
+  permission(id: Int!): Permission!
+  permissions: [Permission!]!
+  person(id: Int!): Person!
+  persons: [Person!]!
+  role(id: Int!): Role!
+  roles: [Role!]!
   sayHello: String!
+  user(id: Int!): User!
+  users: [User!]!
+}
+
+type Role {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdatePermissionInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input UpdatePersonInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input UpdateRoleInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input UpdateUserInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+type User {
+  """Example field (placeholder)"""
+  exampleField: Int!
+
+  """NIC Usuario"""
+  nic: String!
+
+  """Password Usuario"""
+  password: String!
 }

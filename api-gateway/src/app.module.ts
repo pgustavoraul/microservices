@@ -5,6 +5,10 @@ import Joi = require('joi');
 import { ClienteModule } from './modules/cliente/cliente.module';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
+import { UsersModule } from './modules/auth/users/users.module';
+import { PermissionsModule } from './modules/auth/permissions/permissions.module';
+import { RolesModule } from './modules/auth/roles/roles.module';
+import { PersonsModule } from './modules/people/persons/persons.module';
 
 @Module({
   imports: [
@@ -35,6 +39,10 @@ import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
       }),
     }),
     ClienteModule,
+    UsersModule,
+    PermissionsModule,
+    RolesModule,
+    PersonsModule,
   ],
   controllers: [],
   providers: [],
