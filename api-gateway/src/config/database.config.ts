@@ -9,9 +9,9 @@
      username: process.env.DATABASE_USER,
      password: process.env.DATABASE_PASS,
      database: process.env.DATABASE_NAME,
-     entities: [__dirname + '../**/**/*entity{.ts,.js}'],
+     entities: [__dirname + '../**/**/*model{.ts,.js}'],
      autoLoadEntities: true,
-     synchronize: true,
+     synchronize: false,
      logger: 'file',
      logging: ['query', 'error'],
    };
