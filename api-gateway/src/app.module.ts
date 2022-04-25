@@ -1,24 +1,20 @@
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { GqlModuleAsyncOptions, GqlModuleOptions, GraphQLModule } from '@nestjs/graphql';
-import Joi = require('joi');
-import { ClienteModule } from './modules/cliente/cliente.module';
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
-import { UsersModule } from './modules/auth/users/users.module';
-import { PermissionsModule } from './modules/auth/permissions/permissions.module';
-import { RolesModule } from './modules/auth/roles/roles.module';
-import { PersonsModule } from './modules/people/persons/persons.module';
+import { GqlModuleOptions, GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConstantesConfig } from './config/constantes.config';
+import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
+import { Connection } from 'typeorm';
+
+import { TypeOrmConfigService } from './config/database.config';
+import { UsersModule } from './modules/auth/users/users.module';
+import { PersonsModule } from './modules/people/persons/persons.module';
 
 @Module({
   imports: [
-    // TypeOrmModule.forRootAsync({
-    //   inject: [ConfigService],
-    //   useFactory: (config: ConfigService) =>
-    //     config.get(ConstantesConfig.TYPEORM_CONFIG),
-    // }),
+    TypeOrmModule.forRootAsync({
+      useClass: TypeOrmConfigService,
+    }),
     GraphQLModule.forRootAsync<ApolloDriverConfig>({
       driver: ApolloDriver,
       imports: [ConfigModule],
@@ -37,20 +33,14 @@ import { ConstantesConfig } from './config/constantes.config';
     }),
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: `.env.${process.env.NODE_ENV || 'local'}`,
-      validationSchema: Joi.object({
-        NODE_ENV: Joi.string()
-          .valid('development', 'production', 'test', 'local')
-          .default('local'),
-      }),
+      envFilePath: '.env',
     }),
-    ClienteModule,
     UsersModule,
-    PermissionsModule,
-    RolesModule,
     PersonsModule,
   ],
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private connection: Connection) {}
+}

@@ -2,24 +2,26 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-input CreatePermissionInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
 input CreatePersonInput {
   """Example field (placeholder)"""
   exampleField: Int!
 }
 
-input CreateRoleInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
 input CreateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """Fecha creación"""
+  created: DateTime!
+
+  """Fecha eliminación"""
+  deletedAt: DateTime!
+
+  """NIC Usuario"""
+  nic: String!
+
+  """Password Usuario"""
+  password: String!
+
+  """Fecha modificación"""
+  updated: DateTime!
 }
 
 """
@@ -28,26 +30,11 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Mutation {
-  createPermission(createPermissionInput: CreatePermissionInput!): Permission!
-  createPerson(createPersonInput: CreatePersonInput!): Person!
-  createRole(createRoleInput: CreateRoleInput!): Role!
+  createPerson(createPersonInput: CreatePersonInput!): PersonType!
   createUser(createUserInput: CreateUserInput!): UserType!
-  removePermission(id: Int!): Permission!
-  removePerson(id: Int!): Person!
-  removeRole(id: Int!): Role!
-  removeUser(id: Int!): UserType!
-  updatePermission(updatePermissionInput: UpdatePermissionInput!): Permission!
-  updatePerson(updatePersonInput: UpdatePersonInput!): Person!
-  updateRole(updateRoleInput: UpdateRoleInput!): Role!
-  updateUser(updateUserInput: UpdateUserInput!): UserType!
 }
 
-type Permission {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-type Person {
+type PersonType {
   """Fecha creación"""
   created: DateTime!
 
@@ -77,44 +64,7 @@ type Person {
 }
 
 type Query {
-  permission(id: Int!): Permission!
-  permissions: [Permission!]!
-  person(id: Int!): Person!
-  persons: [Person!]!
-  role(id: Int!): Role!
-  roles: [Role!]!
-  sayHello: String!
-  user(id: Int!): UserType!
-  users: [UserType!]!
-}
-
-type Role {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input UpdatePermissionInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
-}
-
-input UpdatePersonInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
-}
-
-input UpdateRoleInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
-}
-
-input UpdateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  persons: [PersonType!]!
 }
 
 type UserType {

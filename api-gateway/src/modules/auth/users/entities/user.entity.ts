@@ -1,22 +1,15 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql';
 
-@ObjectType()
-export class UserType {
-  @Field(() => Int, { description: 'ID Usuario' })
+import { BaseEntity } from 'src/modules/shared/entities/base.entity';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+
+@Entity('user')
+export class UserEntity extends BaseEntity{
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @Field(() => String, { description: 'NIC Usuario' })
+  @Column({ length: 30, nullable: false })
   nic: string;
 
-  @Field(() => String, { description: 'Password Usuario' })
+  @Column({ length: 100, nullable: false })
   password: string;
-
-  @Field(() => Date, { description: 'Fecha creación' })
-  created: Date;
-
-  @Field(() => Date, { description: 'Fecha modificación' })
-  updated?: Date;
-
-  @Field(() => Date, { description: 'Fecha eliminación' })
-  deletedAt?: Date;
 }
