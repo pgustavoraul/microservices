@@ -1,31 +1,22 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
+import { Field, Int, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
-@Entity('public.user')
-export class User {
-  @PrimaryGeneratedColumn('increment', { name: 'ID' })
+export class UserType {
+  @Field(() => Int, { description: 'ID Usuario' })
   id: number;
 
   @Field(() => String, { description: 'NIC Usuario' })
-  @Column({ name: 'nic', type: 'varchar2', length: 30, nullable: false })
-  nic:string;
+  nic: string;
 
   @Field(() => String, { description: 'Password Usuario' })
-  @Column({ name: 'password', type: 'varchar2', length: 100, nullable: false })
-  password:string;
+  password: string;
 
-  @CreateDateColumn() 
-  created!: Date;
+  @Field(() => Date, { description: 'Fecha creación' })
+  created: Date;
 
-  @UpdateDateColumn() 
-  updated!: Date;
+  @Field(() => Date, { description: 'Fecha modificación' })
+  updated?: Date;
 
-  @DeleteDateColumn()  
+  @Field(() => Date, { description: 'Fecha eliminación' })
   deletedAt?: Date;
-
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number;
-
-
 }

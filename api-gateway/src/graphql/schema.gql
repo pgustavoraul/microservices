@@ -31,15 +31,15 @@ type Mutation {
   createPermission(createPermissionInput: CreatePermissionInput!): Permission!
   createPerson(createPersonInput: CreatePersonInput!): Person!
   createRole(createRoleInput: CreateRoleInput!): Role!
-  createUser(createUserInput: CreateUserInput!): User!
+  createUser(createUserInput: CreateUserInput!): UserType!
   removePermission(id: Int!): Permission!
   removePerson(id: Int!): Person!
   removeRole(id: Int!): Role!
-  removeUser(id: Int!): User!
+  removeUser(id: Int!): UserType!
   updatePermission(updatePermissionInput: UpdatePermissionInput!): Permission!
   updatePerson(updatePersonInput: UpdatePersonInput!): Person!
   updateRole(updateRoleInput: UpdateRoleInput!): Role!
-  updateUser(updateUserInput: UpdateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): UserType!
 }
 
 type Permission {
@@ -48,14 +48,20 @@ type Permission {
 }
 
 type Person {
+  """Fecha creación"""
+  created: DateTime!
+
   """Fecha de Nacimiento"""
   datebird: DateTime!
 
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """Fecha Eliminación"""
+  deletedAt: DateTime!
 
   """Nombres"""
   firstname: String!
+
+  """Persona ID"""
+  id: Int!
 
   """Apellidos"""
   lastname: String!
@@ -65,6 +71,9 @@ type Person {
 
   """Teléfono 2"""
   phone2: Int!
+
+  """Fecha Modificación"""
+  updated: DateTime!
 }
 
 type Query {
@@ -75,8 +84,8 @@ type Query {
   role(id: Int!): Role!
   roles: [Role!]!
   sayHello: String!
-  user(id: Int!): User!
-  users: [User!]!
+  user(id: Int!): UserType!
+  users: [UserType!]!
 }
 
 type Role {
@@ -108,13 +117,22 @@ input UpdateUserInput {
   id: Int!
 }
 
-type User {
-  """Example field (placeholder)"""
-  exampleField: Int!
+type UserType {
+  """Fecha creación"""
+  created: DateTime!
+
+  """Fecha eliminación"""
+  deletedAt: DateTime!
+
+  """ID Usuario"""
+  id: Int!
 
   """NIC Usuario"""
   nic: String!
 
   """Password Usuario"""
   password: String!
+
+  """Fecha modificación"""
+  updated: DateTime!
 }
