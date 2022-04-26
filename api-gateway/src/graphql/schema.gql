@@ -30,13 +30,13 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Mutation {
-  createPerson(createPersonInput: CreatePersonInput!): PersonType!
-  createUser(createUserInput: CreateUserInput!): UserType!
+  createPerson(createPersonInput: CreatePersonInput!): Person!
+  createUser(createUserInput: CreateUserInput!): User!
 }
 
-type PersonType {
+type Person {
   """Fecha creación"""
-  created: DateTime!
+  createdAt: DateTime!
 
   """Fecha de Nacimiento"""
   datebird: DateTime!
@@ -60,18 +60,19 @@ type PersonType {
   phone2: Int!
 
   """Fecha Modificación"""
-  updated: DateTime!
+  updatedAt: DateTime!
 }
 
 type Query {
-  persons: [PersonType!]!
+  persons: [Person!]!
+  users: [User!]!
 }
 
-type UserType {
+type User {
   """Fecha creación"""
-  created: DateTime!
+  createdAt: DateTime!
 
-  """Fecha eliminación"""
+  """Fecha Eliminación"""
   deletedAt: DateTime!
 
   """ID Usuario"""
@@ -83,6 +84,6 @@ type UserType {
   """Password Usuario"""
   password: String!
 
-  """Fecha modificación"""
-  updated: DateTime!
+  """Fecha Modificación"""
+  updatedAt: DateTime!
 }
