@@ -78,3 +78,4 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ##MIgrations
 
 npm run typeorm migration:create -- -n <Name-Migration>
+npm run typeorm migration:run  
