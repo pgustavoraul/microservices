@@ -18,7 +18,7 @@ export const OrmConfig = {
   cli: {
     migrationsDir: 'database/migrations',
   },
-  seeds: ['database/seeds/**/*{.ts,.js}'],
-  factories: ['database/factories/**/*{.ts,.js}'],
+//   seeds: ['database/seeds/**/*{.ts,.js}'],
+//   factories: ['database/factories/**/*{.ts,.js}'],
 };
 export default OrmConfig;
