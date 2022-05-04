@@ -1,22 +1,21 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
-import { UsersService } from './users.service';
-import { UserType } from './types/user.type';
-import { CreateUserInput } from './dto/create-user.input';
-import { UpdateUserInput } from './dto/update-user.input';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { CreateUserInput } from '../dto/create-user.input';
+import { User } from '../entities/user.entity';
+import { usersService } from '../services/users.service';
 
-@Resolver(() => UserType)
+@Resolver(() => User)
 export class UsersResolver {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly usersService: usersService) {}
 
-  @Mutation(() => UserType)
+  @Mutation(() => User)
   createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
     return this.usersService.create(createUserInput);
   }
 
-  // @Query(() => [UserType], { name: 'users' })
-  // findAll() {
-  //   return this.usersService.findAll();
-  // }
+  @Query(() => [User], { name: 'users' })
+  findAll() {
+    return this.usersService.findAll();
+  }
 
   // @Query(() => UserType, { name: 'user' })
   // findOne(@Args('id', { type: () => Int }) id: number) {

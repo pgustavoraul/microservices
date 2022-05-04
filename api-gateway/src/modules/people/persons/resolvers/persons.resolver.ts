@@ -1,19 +1,19 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
-import { PersonsService } from './persons.service';
-import { PersonType } from './types/person.type';
-import { CreatePersonInput } from './dto/create-person.input';
-import { UpdatePersonInput } from './dto/update-person.input';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 
-@Resolver(() => PersonType)
+import { CreatePersonInput } from '../dto/create-person.input';
+import { Person } from '../entities/person.entity';
+import { PersonsService } from '../services/persons.service';
+
+@Resolver(() => Person)
 export class PersonsResolver {
   constructor(private readonly personsService: PersonsService) {}
 
-  @Mutation(() => PersonType)
+  @Mutation(() => Person)
   createPerson(@Args('createPersonInput') createPersonInput: CreatePersonInput) {
     return this.personsService.create(createPersonInput);
   }
 
-  @Query(() => [PersonType], { name: 'persons' })
+  @Query(() => [Person], { name: 'persons' })
   findAll() {
     return this.personsService.findAll();
   }
