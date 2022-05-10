@@ -23,6 +23,8 @@ export class AuthService {
   }
 
   login(user: User): { access_token: string } {
+    console.log(user);
+
     const payload = {
       nic: user.nic,
       sub: user.id,

@@ -3,7 +3,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { ConstantesConfig } from 'src/config/constantes.config';
 import { firstValueFrom } from 'rxjs';
-import { manageErrors } from 'src/helper/manageErrors';
+// import { manageErrors } from 'src/helper/manageErrors';
 
 @Injectable()
 export class ClienteService {
@@ -25,7 +25,8 @@ export class ClienteService {
         const payload = {};
         const data = await firstValueFrom(
             this.clienteMSCliente.send(pattern, payload),
-        ).catch((err) => manageErrors(this.msCliente, err.error));
+        )
+        // .catch((err) => manageErrors(this.msCliente, err.error));
         return data;
     }
 }
