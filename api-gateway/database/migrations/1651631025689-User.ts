@@ -27,6 +27,21 @@ export class User1651631025689 implements MigrationInterface {
             length: '100',
             isNullable: false,
           },
+          {
+            name: 'created_at',
+            type: 'timestamp',
+            isNullable: false,
+          },
+          {
+            name: 'updated_at',
+            type: 'timestamp',
+            isNullable: true,
+          },
+          {
+            name: 'deleted_at',
+            type: 'timestamp',
+            isNullable: true,
+          },
         ],
       }),
       true,
@@ -35,7 +50,7 @@ export class User1651631025689 implements MigrationInterface {
     await queryRunner.createIndex(
       'user',
       new TableIndex({
-        name: 'IDX_USER_NIC',
+        name: 'idx_user_nic',
         columnNames: ['nic'],
       }),
     );
@@ -43,6 +58,5 @@ export class User1651631025689 implements MigrationInterface {
 
   async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`DROP TABLE public.user`);
-    await queryRunner.query(`DROP INDEX IDX_USER_NIC`);
   }
 }

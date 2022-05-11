@@ -9,7 +9,7 @@ import { AuthService } from './users/services/auth.service';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  // @UseGuards(LocalAuthGuard)
+  @UseGuards(LocalAuthGuard)
   @Post('login')
   login(@Req() req: Request): { access_token: string } {
     console.log('--------------------------------------',req.user,'--------------------------------------');
