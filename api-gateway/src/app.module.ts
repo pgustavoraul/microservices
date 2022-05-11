@@ -9,7 +9,7 @@ import { Connection } from 'typeorm';
 
 import { TypeOrmConfigService } from './config/database.config';
 import { AuthModule } from './modules/auth/auth.module';
-import { UsersModule } from './modules/auth/users/users.module';
+import { UsersModule } from './modules/users/users.module';
 import { PersonsModule } from './modules/people/persons/persons.module';
 
 @Module({
